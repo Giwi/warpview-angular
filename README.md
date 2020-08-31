@@ -1,27 +1,46 @@
 # WarpviewAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
+Demo project for WarpView integration with Angular
 
-## Development server
+## Setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```shell script
+$ ng new warpview-angular # choose scss
+$ cd warpview-angular
+$ yarn add @senx/warpview
+```
 
-## Code scaffolding
+In `polyfills.ts`: 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```typescript
+(window as any).global = window;
+```
 
-## Build
+In `app.module.ts`:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-## Running unit tests
+import { AppComponent } from './app.component';
+import {WarpViewAngularModule} from '@senx/warpview';
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    WarpViewAngularModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Running end-to-end tests
+In `styles.scss` :
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```scss
+@import "~@senx/warpview/elements/warpview-elements.css";
+```
